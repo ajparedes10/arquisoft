@@ -11,3 +11,62 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+#Controlador de lecturas
+
+GET     /lecturas                   controllers.LecturaController.getLecturas
+GET     /lectura/:id                controllers.LecturaController.getLectura(id: Long)
+POST    /lectura/:idHist            controllers.LecturaController.createLectura(idHist: Long)
+PUT     /lectura/:id                controllers.LecturaController.updateLectura(id: Long)
+
+#Controlador de pacientes
+
+GET     /pacientes                   controllers.PacienteController.getPacientes
+GET     /paciente/:id                controllers.PacienteController.getPaciente(id: Long)
+GET     /paciente/:id/hisClinico     controllers.PacienteController.getHistorialPaciente(id:Long)
+POST    /paciente                    controllers.PacienteController.createPaciente
+PUT     /paciente/:id                controllers.PacienteController.updatePaciente(id: Long)
+GET     /paciente/:id/lecturas/fechaInic/:inic/fehcFin/:fin     controllers.PacienteController.getMedicionesEnFecha(id: Long, inic: String, fin: String)
+
+#Controlador de medicos
+
+GET     /medicos                   controllers.MedicoController.getMedicos
+GET     /medico/:id                controllers.MedicoController.getMedico(id: Long)
+POST    /medico                    controllers.MedicoController.createMedico
+PUT     /medico/:id                controllers.MedicoController.updateMedico(id: Long)
+PUT     /pacienteAMedico/:idPac/:idMed          controllers.MedicoController.agregarPacienteAMedico(idPac: Long, idMed:Long)
+
+#Controlador de Historial de medicion
+
+GET     /histMedicion                    controllers.HistorialDeMedicionController.getHistorialesDeMedicion
+GET     /histMedicion/:id                controllers.HistorialDeMedicionController.getHistorialDeMedicion(id: Long)
+POST    /histMedicion/:idPac             controllers.HistorialDeMedicionController.createHistorialDeMedicion(idPac:Long)
+PUT     /histMedicion/:id                controllers.HistorialDeMedicionController.updateHistorialDeMedicion(id: Long)
+
+#Controlador de Histrorial Clinico
+
+GET     /histClinico                    controllers.HistorialClinicoController.getHistorialesClinicos
+GET     /histClinico/:id                controllers.HistorialClinicoController.getHistorialClinico(id: Long)
+POST    /histClinico/:idPac             controllers.HistorialClinicoController.createHistorialClinico(idPac:Long)
+PUT     /histClinico/:id                controllers.HistorialClinicoController.updateHistorialClinico(id: Long)
+
+#Controlador de marcapasos
+
+GET     /marcapasoss                   controllers.MarcapasosController.getMarcapasoss
+GET     /marcapasos/:id                controllers.MarcapasosController.getMarcapasos(id: Long)
+POST    /marcapasos/:idPac             controllers.MarcapasosController.createMarcapasosPaciente(idPac:Long)
+PUT     /marcapasos/:idPac/:idMed      controllers.MarcapasosController.updateMarcapasos(idPac: Long, idMed:Long)
+
+#Controlador consejos
+
+GET     /consejos                       controllers.ConsejoController.getConsejos
+GET     /consejo/:id                    controllers.ConsejoController.getConsejo(id: Long)
+POST    /consejo/:idMed/:idHist         controllers.ConsejoController.createConsejo(idMed:Long, idHist:Long)
+PUT     /consejo/:id                    controllers.ConsejoController.updateConsejo(id: Long)
+
+#Controlador emergencias
+
+GET     /emergencias                       controllers.EmergenciaController.getEmergencias
+GET     /emergencia/:id                    controllers.EmergenciaController.getEmergencia(id: Long)
+POST    /emergencia/:idPac/:idHist         controllers.EmergenciaController.createEmergencia(idHist:Long, idPac:Long)
+PUT     /emergencia/:id                    controllers.EmergenciaController.updateEmergencia(id: Long)

@@ -94,6 +94,34 @@ public class PacienteController extends Controller {
                     }
             );
         }
+
+    public CompletionStage<Result> getHistorialPaciente(Long idP)
+    {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.
+                supplyAsync(() -> { return PacienteEntity.FINDER.byId(idP).getHistorialClinico(); } ,jdbcDispatcher)
+                .thenApply(citas -> {return ok(toJson(citas));}
+                );
+    }
+    public CompletionStage<Result> getMedicionesEnFecha(Long idPac, String fechaInic, String fehcaFin) {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode n = request().body().asJson();
+        PacienteEntity paciente = PacienteEntity.FINDER.byId(idPac);
+        HistorialDeMedicionEntity hist = paciente.getHistorialMediciones();
+        HistorialDeMedicionEntity r = Json.fromJson(n, HistorialDeMedicionEntity.class);
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    r.setLecturas(hist.getlecturasRangofecha(fechaInic, fehcaFin));
+                    return r;
+                }
+        ).thenApply(
+                mediciones -> {
+                    return ok(Json.toJson(mediciones));
+                }
+        );
+    }
     }
 
 

@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,7 +20,7 @@ public class HistorialDeMedicionEntity extends Model
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "HistorialDeMedicion")
     private Long id;
 
-    @OneToMany(mappedBy = "historialDeMedicion")
+    @OneToMany(mappedBy = "historialMedicion")
     @JsonManagedReference(value="r1")
     private List<LecturaEntity> lecturas;
 
@@ -61,5 +63,25 @@ public class HistorialDeMedicionEntity extends Model
     public void addLectura(LecturaEntity lectura)
     {
         this.lecturas.add(lectura);
+    }
+
+    public List<LecturaEntity> getlecturasRangofecha(String fechaInic, String fehcaFin){
+        List<LecturaEntity> respuesta = new ArrayList<LecturaEntity>();
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+        Date inic = null;
+        Date fin = null;
+        try {
+            inic = format.parse(fechaInic);
+            fin = format.parse(fehcaFin);
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+        if(inic !=null && fin!= null){
+            for (int i=0; i<lecturas.size();i++){
+                LecturaEntity act = lecturas.get(i);
+                if(act.getFecha().compareTo(inic) >=0 && act.getFecha().compareTo(fin) <=0) respuesta.add(act);
+            }
+        }
+        return respuesta;
     }
 }
