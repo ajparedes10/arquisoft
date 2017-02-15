@@ -1,0 +1,108 @@
+package models;
+
+import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Date;
+
+@Entity
+@Table(name="lecturaEntity")
+public class LecturaEntity extends Model
+{
+    public static Finder<Long, LecturaEntity> FINDER = new Finder<>(LecturaEntity.class);
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Lectura")
+    private Long id;
+    private Date fecha;
+    private int frecuenciaCardiaca;
+    private int presionSistolica;
+    private int presionDiastolica;
+    private double nivelEstres;
+
+    @ManyToOne
+    @JsonBackReference (value = "r1")
+    private HistorialDeMedicionEntity historialMedicion;
+
+    public LecturaEntity()
+    {
+        id=null;
+        fecha=null;
+        frecuenciaCardiaca=-1;
+        presionSistolica=-1;
+        presionDiastolica=-1;
+        nivelEstres=-1;
+    }
+    public LecturaEntity(Long id)
+    {
+        this();
+        setId(id);
+    }
+
+    public LecturaEntity(Long id, Date fecha, int frecuenciaCardiaca, int presionSistolica, int presionDiastolica, double nivelEstres) {
+        this.id = id;
+        this.fecha = fecha;
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
+        this.presionSistolica = presionSistolica;
+        this.presionDiastolica = presionDiastolica;
+        this.nivelEstres = nivelEstres;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getFrecuenciaCardiaca() {
+        return frecuenciaCardiaca;
+    }
+
+    public void setFrecuenciaCardiaca(int frecuenciaCardiaca) {
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
+    }
+
+    public int getPresionSistolica() {
+        return presionSistolica;
+    }
+
+    public void setPresionSistolica(int presionSistolica) {
+        this.presionSistolica = presionSistolica;
+    }
+
+    public int getPresionDiastolica() {
+        return presionDiastolica;
+    }
+
+    public void setPresionDiastolica(int presionDiastolica) {
+        this.presionDiastolica = presionDiastolica;
+    }
+
+    public double getNivelEstres() {
+        return nivelEstres;
+    }
+
+    public void setNivelEstres(double nivelEstres) {
+        this.nivelEstres = nivelEstres;
+    }
+
+    public HistorialDeMedicionEntity getHistorialMedicion() {
+        return historialMedicion;
+    }
+
+    public void setHistorialMedicion(HistorialDeMedicionEntity historialMedicion) {
+        this.historialMedicion = historialMedicion;
+    }
+}
