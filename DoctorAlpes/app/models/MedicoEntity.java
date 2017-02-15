@@ -21,7 +21,7 @@ public class MedicoEntity extends Model
     private String nombre;
     private String tipo;
 
-    @OneToMany
+    @OneToMany (mappedBy = "medico")
     @JsonManagedReference(value="r2")
     private List<ConsejoEntity> consejos;
 
@@ -29,7 +29,7 @@ public class MedicoEntity extends Model
     @JsonBackReference(value="r3")
     private List<PacienteEntity> pacientes;
 
-    @OneToMany
+    @OneToMany (mappedBy = "medico")
     @JsonManagedReference(value="r4")
     private List<MarcapasosEntity> marcapasos;
 

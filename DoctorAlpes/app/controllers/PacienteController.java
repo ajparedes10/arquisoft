@@ -73,19 +73,26 @@ public class PacienteController extends Controller {
         }
         public CompletionStage<Result> updatePaciente( Long idE)
         {
-            MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
             JsonNode n = request().body().asJson();
             PacienteEntity m = Json.fromJson( n , PacienteEntity.class ) ;
+
             PacienteEntity antiguo = PacienteEntity.FINDER.byId(idE);
 
             return CompletableFuture.supplyAsync(
                     ()->{
-                        antiguo.setId(m.getId());
-                        antiguo.setNombre(m.getNombre());
-                        antiguo.setEps(m.getEps());
-                        antiguo.setEstado(m.getEstado());
+                        try {
+                            //antiguo.setId(m.getId());
+                            antiguo.setNombre(m.getNombre());
+                            antiguo.setEps(m.getEps());
+                            antiguo.setEstado(m.getEstado());
 
-                        antiguo.update();
+                            antiguo.update();
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                         return antiguo;
                     }
             ).thenApply(

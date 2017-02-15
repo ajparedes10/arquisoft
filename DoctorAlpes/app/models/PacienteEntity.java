@@ -38,7 +38,7 @@ public class PacienteEntity extends Model
     @JsonBackReference(value="r7")
     private HistorialClinicoEntity historialClinico;
 
-    @OneToMany
+    @OneToMany(mappedBy = "paciente")
     @JsonManagedReference(value="r8")
     private List<EmergenciaEntity> emergencias;
 
