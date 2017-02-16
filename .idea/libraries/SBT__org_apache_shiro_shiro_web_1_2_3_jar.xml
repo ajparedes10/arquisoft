@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.apache.shiro:shiro-web:1.2.3:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.shiro/shiro-web/bundles/shiro-web-1.2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.shiro/shiro-web/srcs/shiro-web-1.2.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
