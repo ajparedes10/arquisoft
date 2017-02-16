@@ -53,6 +53,7 @@ public class ConsejoController extends Controller{
                     medico.addConsejo(consejo);
                     historial.addConsejo(consejo);
                     consejo.save();
+                    medico.update();
                     return consejo;
                 }
         ).thenApply(
