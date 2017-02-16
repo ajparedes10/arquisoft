@@ -41,9 +41,8 @@ public class LecturaEntity extends Model
         setId(id);
     }
 
-    public LecturaEntity(Long id, Date fecha, int frecuenciaCardiaca, int presionSistolica, int presionDiastolica, double nivelEstres) {
+    public LecturaEntity(Long id, int frecuenciaCardiaca, int presionSistolica, int presionDiastolica, double nivelEstres) {
         this.id = id;
-        this.fecha = fecha;
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.presionSistolica = presionSistolica;
         this.presionDiastolica = presionDiastolica;

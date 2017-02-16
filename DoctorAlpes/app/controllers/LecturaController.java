@@ -50,6 +50,7 @@ public class LecturaController extends Controller{
                     lectura.setHistorialMedicion(historial);
                     historial.addLectura(lectura);
                     lectura.save();
+                    historial.update();
                     return lectura;
                 }
         ).thenApply(
@@ -75,6 +76,8 @@ public class LecturaController extends Controller{
                 }
         );
     }
+
+
     public CompletionStage<Result> updateLectura( Long idE)
     {
         JsonNode n = request().body().asJson();
@@ -99,4 +102,6 @@ public class LecturaController extends Controller{
                 }
         );
     }
+
+
 }
