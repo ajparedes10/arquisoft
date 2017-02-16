@@ -50,6 +50,7 @@ public class HistorialDeMedicionController extends Controller
                     historial.setPaciente(paciente);
                     paciente.setHistorialMediciones(historial);
                     historial.save();
+                    paciente.update();
                     return historial;
                 }
         ).thenApply(

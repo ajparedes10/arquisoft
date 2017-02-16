@@ -55,7 +55,10 @@ public class HistorialClinicoController extends Controller
                         PacienteEntity paciente = PacienteEntity.FINDER.byId(idPaciente);
                         historial.setPaciente(paciente);
                         paciente.setHistorialClinico(historial);
+                        System.out.print("AAAAAAA");
+
                         historial.save();
+                        paciente.update();
                         return historial;
                     }
             ).thenApply(

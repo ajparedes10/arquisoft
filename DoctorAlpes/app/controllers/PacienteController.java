@@ -108,7 +108,7 @@ public class PacienteController extends Controller {
 
         return CompletableFuture.
                 supplyAsync(() -> { return PacienteEntity.FINDER.byId(idP).getHistorialClinico(); } ,jdbcDispatcher)
-                .thenApply(citas -> {return ok(toJson(citas));}
+                .thenApply(historialClinico -> {return ok(toJson(historialClinico));}
                 );
     }
     public CompletionStage<Result> getMedicionesEnFecha(Long idPac, String fechaInic, String fehcaFin) {
