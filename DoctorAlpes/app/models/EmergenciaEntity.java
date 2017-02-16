@@ -44,12 +44,12 @@ public class EmergenciaEntity extends Model {
         this();
         setId(id);
     }
-    public EmergenciaEntity(Long id, String descripcion, Date fecha, String ubicacion)
+    public EmergenciaEntity(Long id, String descripcion, String ubicacion)
     {
         this();
         setId(id);
         setDescripcion(descripcion);
-        setFecha(fecha);
+        setFecha(new Date());
         setUbicacion(ubicacion);
     }
 

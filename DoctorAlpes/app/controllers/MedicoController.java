@@ -106,6 +106,7 @@ public class MedicoController extends Controller{
                     medico.addPaciente(paciente);
                     paciente.addMedico(medico);
                     medico.update();
+                    paciente.update();
                     return medico;
                 }
         ).thenApply(

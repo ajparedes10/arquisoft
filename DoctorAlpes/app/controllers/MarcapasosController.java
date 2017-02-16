@@ -82,7 +82,7 @@ public class MarcapasosController extends Controller {
 
         return CompletableFuture.supplyAsync(
                 ()->{
-                    if(medico != null && medico.getTipo().equals("Cardiologia"))
+                    if(medico != null && medico.getTipo().equals("Cardiologo"))
                     {
                         MarcapasosEntity antiguo = paciente.getMarcapasos();
                         antiguo.setId(m.getId());
