@@ -27,6 +27,7 @@ GET     /paciente/:id/hisClinico     controllers.PacienteController.getHistorial
 POST    /paciente                    controllers.PacienteController.createPaciente
 PUT     /paciente/:id                controllers.PacienteController.updatePaciente(id: Long)
 GET     /paciente/:id/lecturas/fechaInic/:inic/fehcFin/:fin     controllers.PacienteController.getMedicionesEnFecha(id: Long, inic: String, fin: String)
+DELETE     /paciente/:id                controllers.PacienteController.deletePaciente(id: Long)
 
 #Controlador de medicos
 
@@ -49,6 +50,7 @@ GET     /histClinico                    controllers.HistorialClinicoController.g
 GET     /histClinico/:id                controllers.HistorialClinicoController.getHistorialClinico(id: Long)
 POST    /histClinico/:idPac             controllers.HistorialClinicoController.createHistorialClinico(idPac:Long)
 PUT     /histClinico/:id                controllers.HistorialClinicoController.updateHistorialClinico(id: Long)
+DELETE     /histClinico/:id                controllers.HistorialClinicoController.deleteHistorialClinico(id: Long)
 
 #Controlador de marcapasos
 

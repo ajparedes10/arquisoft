@@ -41,12 +41,12 @@ public class ConsejoEntity extends Model
         this();
         setId(id);
     }
-    public ConsejoEntity(Long id, String tipo, Date fecha, String mensaje)
+    public ConsejoEntity(Long id, String tipo, String mensaje)
     {
         this();
         setId(id);
         setTipo(tipo);
-        setFecha(fecha);
+        setFecha(new Date());
         setMensaje(mensaje);
     }
 

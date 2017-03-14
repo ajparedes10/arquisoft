@@ -9,6 +9,8 @@ import play.mvc.Result;
 import static play.libs.Json.toJson;
 import models.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -62,7 +64,9 @@ public class PacienteController extends Controller {
             return CompletableFuture.supplyAsync(
                     ()->{
                         PacienteEntity paciente = PacienteEntity.FINDER.byId(idE);
+
                         paciente.delete();
+
                         return paciente;
                     }
             ).thenApply(
@@ -113,15 +117,15 @@ public class PacienteController extends Controller {
     }
     public CompletionStage<Result> getMedicionesEnFecha(Long idPac, String fechaInic, String fehcaFin) {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
-        JsonNode n = request().body().asJson();
         PacienteEntity paciente = PacienteEntity.FINDER.byId(idPac);
         HistorialDeMedicionEntity hist = paciente.getHistorialMediciones();
-        HistorialDeMedicionEntity r = Json.fromJson(n, HistorialDeMedicionEntity.class);
+
 
         return CompletableFuture.supplyAsync(
                 ()->{
-                    r.setLecturas(hist.getlecturasRangofecha(fechaInic, fehcaFin));
-                    return r;
+                    List<LecturaEntity> re = new ArrayList<>();
+                    re = hist.getlecturasRangofecha(fechaInic, fehcaFin);
+                    return re;
                 }
         ).thenApply(
                 mediciones -> {
