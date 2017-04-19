@@ -25,6 +25,12 @@ create table emergenciaentity (
 );
 create sequence Emergencia;
 
+create table encriptador_entity (
+  mensaje_code                  varchar(255),
+  hash_mensaje                  bytea,
+  mensaje_decode                varchar(255)
+);
+
 create table historialmedicoentity (
   id                            bigint not null,
   paciente_id                   bigint,
@@ -193,6 +199,8 @@ drop sequence if exists Consejo;
 
 drop table if exists emergenciaentity cascade;
 drop sequence if exists Emergencia;
+
+drop table if exists encriptador_entity cascade;
 
 drop table if exists historialmedicoentity cascade;
 drop sequence if exists HistorialClinico;
