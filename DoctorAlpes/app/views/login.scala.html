@@ -1,0 +1,22 @@
+@import views.html.helper
+@(form: Form[Application.Login])
+
+<html>
+@helper.form(routes.Application.authenticate) {
+	<h1>Sign in</h1>
+	@if(form.hasGlobalErrors) {
+		<p class="error">
+		@form.globalError.message
+		</p>
+	}
+	<p>
+		<input type="email" name="email" placeholder="Email" >
+	</p>
+	<p>
+		<input type="password" name="password" placeholder="Password">
+		</p>
+		<p>
+			<button type="submit">Login</button>
+		</p>
+	}
+</html>
