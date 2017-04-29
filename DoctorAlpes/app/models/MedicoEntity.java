@@ -20,6 +20,8 @@ public class MedicoEntity extends Model
     private Long id;
     private String nombre;
     private String tipo;
+    private String clave;
+    private String correo;
 
     @OneToMany (mappedBy = "medico")
     @JsonManagedReference(value="r2")
@@ -32,6 +34,10 @@ public class MedicoEntity extends Model
     @OneToMany (mappedBy = "medico")
     @JsonManagedReference(value="r4")
     private List<MarcapasosEntity> marcapasos;
+
+    @OneToMany(mappedBy = "medico")
+    @JsonManagedReference(value="r20")
+    private List<EmergenciaEntity> emergencias;
 
     public MedicoEntity()
     {
@@ -103,6 +109,22 @@ public class MedicoEntity extends Model
         this.marcapasos = marcapasos;
     }
 
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public void addConsejo(ConsejoEntity consejo)
     {
         this.consejos.add(consejo);
@@ -111,5 +133,18 @@ public class MedicoEntity extends Model
     public void addPaciente(PacienteEntity paciente)
     {
         this.pacientes.add(paciente);
+    }
+
+    public void addEmergencia(EmergenciaEntity emergencia)
+    {
+        this.emergencias.add(emergencia);
+    }
+
+    public List<EmergenciaEntity> getEmergencias() {
+        return emergencias;
+    }
+
+    public void setEmergencias(List<EmergenciaEntity> emergencias) {
+        this.emergencias = emergencias;
     }
 }

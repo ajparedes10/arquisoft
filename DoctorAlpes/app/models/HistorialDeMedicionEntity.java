@@ -55,6 +55,10 @@ public class HistorialDeMedicionEntity extends Model
         this.lecturas = lecturas;
     }
 
+    public PacienteEntity getPaciente(){
+        return paciente;
+    }
+
     public void setPaciente(PacienteEntity paciente) {
 
         this.paciente = paciente;

@@ -47,7 +47,22 @@ public class PacienteController extends Controller {
             PacienteEntity paciente = Json.fromJson( n , PacienteEntity.class ) ;
             return CompletableFuture.supplyAsync(
                     ()->{
+                        MedicoObserver mOb = new MedicoObserver(paciente);
+                        EmergenciaObserver eOb = new EmergenciaObserver(paciente);
+
+                        HistorialDeMedicionEntity hm = new HistorialDeMedicionEntity();
+                        HistorialClinicoEntity hc = new HistorialClinicoEntity();
+
+                        paciente.addObservador(mOb);
+                        paciente.addObservador(eOb);
+                        paciente.setHistorialClinico(hc);
+                        paciente.setHistorialMediciones(hm);
                         paciente.save();
+
+                        hm.setPaciente(paciente);
+                        hm.save();
+                        hc.setPaciente(paciente);
+                        hc.save();
                         return paciente;
                     }
             ).thenApply(
@@ -86,7 +101,6 @@ public class PacienteController extends Controller {
             return CompletableFuture.supplyAsync(
                     ()->{
                         try {
-                            //antiguo.setId(m.getId());
                             antiguo.setNombre(m.getNombre());
                             antiguo.setEps(m.getEps());
                             antiguo.setEstado(m.getEstado());

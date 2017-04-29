@@ -20,6 +20,7 @@ create table emergenciaentity (
   fecha                         timestamp,
   ubicacion                     varchar(255),
   paciente_id                   bigint,
+  medico_id                     bigint,
   historial_clinico_id          bigint,
   constraint pk_emergenciaentity primary key (id)
 );
@@ -76,6 +77,8 @@ create table medicoentity (
   id                            bigint not null,
   nombre                        varchar(255),
   tipo                          varchar(255),
+  clave                         varchar(255),
+  correo                        varchar(255),
   constraint pk_medicoentity primary key (id)
 );
 create sequence Medico;
@@ -115,6 +118,9 @@ create index ix_consejoentity_historial_clinico_id on consejoentity (historial_c
 
 alter table emergenciaentity add constraint fk_emergenciaentity_paciente_id foreign key (paciente_id) references pacienteentity (id) on delete restrict on update restrict;
 create index ix_emergenciaentity_paciente_id on emergenciaentity (paciente_id);
+
+alter table emergenciaentity add constraint fk_emergenciaentity_medico_id foreign key (medico_id) references medicoentity (id) on delete restrict on update restrict;
+create index ix_emergenciaentity_medico_id on emergenciaentity (medico_id);
 
 alter table emergenciaentity add constraint fk_emergenciaentity_historial_clinico_id foreign key (historial_clinico_id) references historialmedicoentity (id) on delete restrict on update restrict;
 create index ix_emergenciaentity_historial_clinico_id on emergenciaentity (historial_clinico_id);
@@ -160,6 +166,9 @@ drop index if exists ix_consejoentity_historial_clinico_id;
 
 alter table if exists emergenciaentity drop constraint if exists fk_emergenciaentity_paciente_id;
 drop index if exists ix_emergenciaentity_paciente_id;
+
+alter table if exists emergenciaentity drop constraint if exists fk_emergenciaentity_medico_id;
+drop index if exists ix_emergenciaentity_medico_id;
 
 alter table if exists emergenciaentity drop constraint if exists fk_emergenciaentity_historial_clinico_id;
 drop index if exists ix_emergenciaentity_historial_clinico_id;

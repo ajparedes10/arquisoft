@@ -30,6 +30,10 @@ public class EmergenciaEntity extends Model {
     private PacienteEntity paciente;
 
     @ManyToOne
+    @JsonBackReference(value="r20")
+    private MedicoEntity medico;
+
+    @ManyToOne
     @JsonBackReference(value="r10")
     private HistorialClinicoEntity historialClinico;
 
@@ -100,5 +104,13 @@ public class EmergenciaEntity extends Model {
 
     public void setHistorialClinico(HistorialClinicoEntity historialClinico) {
         this.historialClinico = historialClinico;
+    }
+
+    public MedicoEntity getMedico() {
+        return medico;
+    }
+
+    public void setMedico(MedicoEntity medico) {
+        this.medico = medico;
     }
 }

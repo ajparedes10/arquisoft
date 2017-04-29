@@ -3,6 +3,7 @@ package models;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import controllers.Observador;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 public class PacienteEntity extends Model
 {
     public static Finder<Long, PacienteEntity> FINDER = new Finder<>(PacienteEntity.class);
+    private List<Observador> observadores = new ArrayList<Observador>();
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Paciente")
@@ -95,7 +97,9 @@ public class PacienteEntity extends Model
     }
 
     public void setEstado(String estado) {
+
         this.estado = estado;
+        notificarObservador();
     }
 
     public List<MedicoEntity> getMedicos() {
@@ -146,5 +150,13 @@ public class PacienteEntity extends Model
     public void addMedico(MedicoEntity medico)
     {
         this.medicos.add(medico);
+    }
+
+    public void addObservador(Observador o){ observadores.add(o);   }
+
+    public void notificarObservador(){
+        for (int i=0; i<observadores.size();i++){
+            observadores.get(i).update();
+        }
     }
 }

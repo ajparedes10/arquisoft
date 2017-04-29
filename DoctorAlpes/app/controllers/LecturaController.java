@@ -49,9 +49,12 @@ public class LecturaController extends Controller{
                     HistorialDeMedicionEntity historial = HistorialDeMedicionEntity.FINDER.byId(idHist);
                     lectura.setFecha(new Date());
                     lectura.setHistorialMedicion(historial);
+                    PacienteEntity p = historial.getPaciente();
                     historial.addLectura(lectura);
                     lectura.save();
+                    p.setEstado(lectura.verificardatos());
                     historial.update();
+                    p.update();
                     return lectura;
                 }
         ).thenApply(
