@@ -20,8 +20,9 @@ public class MedicoEntity extends Model
     private Long id;
     private String nombre;
     private String tipo;
-    private static String correo;
-    private static String clave;
+    @Column(unique=true)
+    private  String correo;
+    private  String clave;
 
     @OneToMany (mappedBy = "medico")
     @JsonManagedReference(value="r2")
@@ -127,7 +128,7 @@ public class MedicoEntity extends Model
         this.pacientes.add(paciente);
     }
 
-    public static boolean  authenticate(String pCorreo, String pClave){
+    public  boolean  authenticate(String pCorreo, String pClave){
             return (correo.equals(pCorreo) && clave.equals(pClave));
     }
 }

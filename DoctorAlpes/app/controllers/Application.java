@@ -6,6 +6,8 @@ import play.data.*;
 import play.mvc.*;
 import views.html.*;
 
+import java.util.List;
+
 import static play.data.Form.form;
 
 public class Application extends Controller{
@@ -16,9 +18,12 @@ public class Application extends Controller{
         public String password;
 
         public String validate() {
-
-            if (MedicoEntity.authenticate(email, password)== false) {
-                return "Invalid user or password";
+            List<MedicoEntity> meds = MedicoEntity.FINDER.where().ilike("correo", "%"+email+"%").findList();
+            if (meds==null || meds.size()==0 || meds.get(0)==null){
+                return "Invalid user";
+            }
+            if (meds.get(0)!=null && meds.get(0).authenticate(email, password)== false) {
+                return "Invalid password";
             }
             return null;
         }
@@ -43,7 +48,11 @@ public class Application extends Controller{
         );
     }
 
-
+    public Result medico(){
+        return ok(
+                medico.render("medico")
+        );
+    }
 
 
 

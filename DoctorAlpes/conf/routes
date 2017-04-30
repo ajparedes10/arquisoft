@@ -37,6 +37,7 @@ DELETE     /paciente/:id                controllers.PacienteController.deletePac
 
 GET     /medicos                   controllers.MedicoController.getMedicos
 GET     /medico/:id                controllers.MedicoController.getMedico(id: Long)
+GET     /medicoCorreo/:correo            controllers.MedicoController.getMedicoCorreo(correo: String)
 POST    /medico                    controllers.MedicoController.createMedico
 PUT     /medico/:id                controllers.MedicoController.updateMedico(id: Long)
 PUT     /pacienteAMedico/:idPac/:idMed          controllers.MedicoController.agregarPacienteAMedico(idPac: Long, idMed:Long)

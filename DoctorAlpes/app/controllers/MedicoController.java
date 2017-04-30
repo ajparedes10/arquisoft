@@ -38,6 +38,16 @@ public class MedicoController extends Controller{
                 );
     }
 
+    public CompletionStage<Result> getMedicoCorreo(String correo)
+    {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.
+                supplyAsync(() -> { return MedicoEntity.FINDER.where().ilike("correo", "%"+correo+"%").findList(); } ,jdbcDispatcher)
+                .thenApply(medicos -> {return ok(toJson(medicos));}
+                );
+    }
+
     public CompletionStage<Result> createMedico()
     {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
