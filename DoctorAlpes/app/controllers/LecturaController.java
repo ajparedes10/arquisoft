@@ -49,12 +49,17 @@ public class LecturaController extends Controller{
                     HistorialDeMedicionEntity historial = HistorialDeMedicionEntity.FINDER.byId(idHist);
                     lectura.setFecha(new Date());
                     lectura.setHistorialMedicion(historial);
-                    PacienteEntity p = historial.getPaciente();
-                    historial.addLectura(lectura);
                     lectura.save();
-                    p.setEstado(lectura.verificardatos());
+                    System.out.println("creó lectura en hm "+ historial.getId());
+
+                    historial.addLectura(lectura);
                     historial.update();
+
+                    PacienteEntity p = historial.getPaciente();
+                    System.out.println("el paciente es "+p.getNombre() + "el estado es "+ lectura.verificardatos());
+                    p.setEstado(lectura.verificardatos());
                     p.update();
+
                     return lectura;
                 }
         ).thenApply(

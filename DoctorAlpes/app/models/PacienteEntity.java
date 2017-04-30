@@ -3,7 +3,8 @@ package models;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import controllers.Observador;
+import controllers.EmergenciaObserver;
+import controllers.MedicoObserver;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ import java.util.List;
 public class PacienteEntity extends Model
 {
     public static Finder<Long, PacienteEntity> FINDER = new Finder<>(PacienteEntity.class);
-    private List<Observador> observadores = new ArrayList<Observador>();
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Paciente")
@@ -22,7 +22,8 @@ public class PacienteEntity extends Model
     private String nombre;
     private String eps;
     private String estado;
-
+    private MedicoObserver obMed = new MedicoObserver(this);
+    private EmergenciaObserver obEm = new EmergenciaObserver(this);
 
     @ManyToMany
     @JsonBackReference (value = "r3")
@@ -99,7 +100,10 @@ public class PacienteEntity extends Model
     public void setEstado(String estado) {
 
         this.estado = estado;
-        notificarObservador();
+        if(!estado.equals(LecturaEntity.VERDE)) {
+            System.out.println("cambió estado a " + estado);
+            notificarObservador();
+        }
     }
 
     public List<MedicoEntity> getMedicos() {
@@ -134,6 +138,22 @@ public class PacienteEntity extends Model
         this.historialClinico = historialClinico;
     }
 
+    public MedicoObserver getObMed() {
+        return obMed;
+    }
+
+    public void setObMed(MedicoObserver obMed) {
+        this.obMed = obMed;
+    }
+
+    public EmergenciaObserver getObEm() {
+        return obEm;
+    }
+
+    public void setObEm(EmergenciaObserver obEm) {
+        this.obEm = obEm;
+    }
+
     public List<EmergenciaEntity> getEmergencias() {
         return emergencias;
     }
@@ -152,11 +172,11 @@ public class PacienteEntity extends Model
         this.medicos.add(medico);
     }
 
-    public void addObservador(Observador o){ observadores.add(o);   }
-
     public void notificarObservador(){
-        for (int i=0; i<observadores.size();i++){
-            observadores.get(i).update();
-        }
+        System.out.println("entró notificar ");
+        System.out.println("-------------------------OSERVADORES");
+        System.out.println("-------------------------size"+ medicos.size());
+        obMed.update();
+        obEm.update();
     }
 }

@@ -17,7 +17,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /lecturas                   controllers.LecturaController.getLecturas
 GET     /lectura/:id                controllers.LecturaController.getLectura(id: Long)
-POST    /lectura/:idHist            controllers.LecturaController.createLecturaCode(idHist: Long)
+POST    /lectura/:idHist            controllers.LecturaController.createLectura(idHist: Long)
 PUT     /lectura/:id                controllers.LecturaController.updateLectura(id: Long)
 
 #Controlador de pacientes
