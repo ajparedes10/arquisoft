@@ -13,10 +13,6 @@ public class LecturaEntity extends Model
 {
     public static Finder<Long, LecturaEntity> FINDER = new Finder<>(LecturaEntity.class);
 
-    public final static String VERDE = "verde"; // entre 70 y 95
-    public final static String AMARILLO = "amarillo"; // entre 55 y 70 - entre 95 y 120
-    public final static String ROJO = "rojo"; // mas de 120 - menos de 55
-
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Lectura")
     private Long id;
@@ -109,16 +105,4 @@ public class LecturaEntity extends Model
         this.historialMedicion = historialMedicion;
     }
 
-    public String verificardatos(){
-
-        if(frecuenciaCardiaca > 70 && frecuenciaCardiaca < 95){
-            return VERDE;
-        }
-        else if(frecuenciaCardiaca > 120 || frecuenciaCardiaca < 55){
-            return ROJO;
-        }
-        else
-            return AMARILLO;
-
-    }
 }

@@ -22,15 +22,15 @@ public class MedicoObserver extends Observador {
         System.out.println("entró update medico observador");
         String mensaje = "";
 
-        if(paciente.getEstado().equals(LecturaEntity.ROJO) || paciente.getEstado().equals(LecturaEntity.AMARILLO)) {
+        if(paciente.getEstado().toString().equals(State.ROJO) || paciente.getEstado().toString().equals(State.AMARILLO)) {
             System.out.println("entró rojo o amarillo");
 
-            if(paciente.getEstado().equals(LecturaEntity.ROJO)){
+            if(paciente.getEstado().toString().equals(State.ROJO)){
                 System.out.println("entró rojo");
-                mensaje = "Alerta Roja! El paciente " + paciente.getNombre() + " se encuentra muy grave";
+                mensaje = "Alerta Roja! El paciente " + paciente.getNombre() + " se encuentra muy grave.\n"+paciente.getEstado().darMotivo();;
             }
-            else if (paciente.getEstado().equals(LecturaEntity.AMARILLO)) {
-                mensaje = "Cuidado! El paciente " + paciente.getNombre() + " se encuentra en estado amarillo";
+            else if (paciente.getEstado().toString().equals(State.AMARILLO)) {
+                mensaje = "Cuidado! El paciente " + paciente.getNombre() + " se encuentra en estado amarillo.\n"+paciente.getEstado().darMotivo();;
             }
 
             List<MedicoEntity> medicos = paciente.getMedicos();

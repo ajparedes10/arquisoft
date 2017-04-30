@@ -56,9 +56,15 @@ public class LecturaController extends Controller{
                     historial.update();
 
                     PacienteEntity p = historial.getPaciente();
-                    System.out.println("el paciente es "+p.getNombre() + "el estado es "+ lectura.verificardatos());
-                    p.setEstado(lectura.verificardatos());
-                    p.update();
+
+                    Rojo estadoRojo = new Rojo();
+                    if(!estadoRojo.establecerEstado(p, lectura)){
+                        Amarillo estadoAmarillo = new Amarillo();
+                        if(!estadoAmarillo.establecerEstado(p,lectura)){
+                            Verde estado = new Verde();
+                            estado.establecerEstado(p, lectura);
+                        }
+                    }
 
                     return lectura;
                 }

@@ -17,16 +17,11 @@ public class EmergenciaObserver extends Observador {
     public void update() {
         String mensaje = "";
 
-        if(paciente.getEstado().equals(LecturaEntity.ROJO)){
+        if(paciente.getEstado().toString().equals(State.ROJO)){
             System.out.println("--------------------entró rojo");
             EmergenciaEntity em = new EmergenciaEntity();
-            mensaje = "Alerta Roja! su frecuencia cardiaca está fuera de rango";
+            mensaje = "Alerta Roja! "+ paciente.getEstado().darMotivo();;
             HistorialClinicoEntity hc =paciente.getHistorialClinico();
-            System.out.println("******************"+paciente.getNombre());
-            if(hc!=null)
-             System.out.println("--------------------buco historial clinico "+ hc.getId());
-            else
-                System.out.println("********el histiraial es null**********");
 
             em.setDescripcion(mensaje);
             em.setFecha(new Date());

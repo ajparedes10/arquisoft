@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import controllers.EmergenciaObserver;
 import controllers.MedicoObserver;
+import controllers.State;
+import controllers.Verde;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class PacienteEntity extends Model
     private Long id;
     private String nombre;
     private String eps;
-    private String estado;
+    private State estado;
     private MedicoObserver obMed = new MedicoObserver(this);
     private EmergenciaObserver obEm = new EmergenciaObserver(this);
 
@@ -50,7 +52,7 @@ public class PacienteEntity extends Model
         id=null;
         nombre="NO NAME";
         eps="NO NAME";
-        estado = "NO NAME";
+        estado = new Verde();
         medicos = new ArrayList<MedicoEntity>();
         emergencias = new ArrayList<EmergenciaEntity>();
 
@@ -60,13 +62,12 @@ public class PacienteEntity extends Model
         this();
         setId(id);
     }
-    public PacienteEntity(Long id, String nombre, String eps, String estado )
+    public PacienteEntity(Long id, String nombre, String eps)
     {
         this();
         setId(id);
         setNombre(nombre);
         setEps(eps);
-        setEstado(estado);
     }
 
     public Long getId() {
@@ -93,14 +94,14 @@ public class PacienteEntity extends Model
         this.eps = eps;
     }
 
-    public String getEstado() {
+    public State getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(State estado) {
 
         this.estado = estado;
-        if(!estado.equals(LecturaEntity.VERDE)) {
+        if(!estado.toString().equals(State.VERDE)) {
             System.out.println("cambió estado a " + estado);
             notificarObservador();
         }
@@ -174,7 +175,7 @@ public class PacienteEntity extends Model
 
     public void notificarObservador(){
         System.out.println("entró notificar ");
-        System.out.println("-------------------------OSERVADORES");
+        System.out.println("-------------------------OBSERVADORES");
         System.out.println("-------------------------size"+ medicos.size());
         obMed.update();
         obEm.update();
