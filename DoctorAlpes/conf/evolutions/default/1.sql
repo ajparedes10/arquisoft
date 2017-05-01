@@ -77,8 +77,9 @@ create table medicoentity (
   id                            bigint not null,
   nombre                        varchar(255),
   tipo                          varchar(255),
-  clave                         varchar(255),
   correo                        varchar(255),
+  clave                         varchar(255),
+  constraint uq_medicoentity_correo unique (correo),
   constraint pk_medicoentity primary key (id)
 );
 create sequence Medico;
