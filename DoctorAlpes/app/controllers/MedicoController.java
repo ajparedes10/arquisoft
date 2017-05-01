@@ -18,6 +18,15 @@ import static play.libs.Json.toJson;
  */
 public class MedicoController extends Controller{
 
+    public CompletionStage<Result> getMedicoPacientes(Long id) {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.
+                supplyAsync(() -> { return MedicoEntity.FINDER.byId(id).getPacientes(); } ,jdbcDispatcher)
+                .thenApply(pacientes -> {return ok(toJson(pacientes));}
+                );
+    }
+
     public CompletionStage<Result> getMedicos()
     {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
@@ -110,6 +119,7 @@ public class MedicoController extends Controller{
 
         return CompletableFuture.supplyAsync(
                 ()->{
+                   // Long id = Long.getLong(idPaciente.split("=")[1]);
                     MedicoEntity medico = MedicoEntity.FINDER.byId(idMedico);
                     PacienteEntity paciente = PacienteEntity.FINDER.byId(idPaciente);
                     medico.addPaciente(paciente);

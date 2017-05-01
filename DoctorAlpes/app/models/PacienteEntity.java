@@ -24,6 +24,7 @@ public class PacienteEntity extends Model
     private String nombre;
     private String eps;
     private State estado;
+    private String est;
     private MedicoObserver obMed = new MedicoObserver(this);
     private EmergenciaObserver obEm = new EmergenciaObserver(this);
 
@@ -52,6 +53,7 @@ public class PacienteEntity extends Model
         id=null;
         nombre="NO NAME";
         eps="NO NAME";
+        est="verde";
         estado = new Verde();
         medicos = new ArrayList<MedicoEntity>();
         emergencias = new ArrayList<EmergenciaEntity>();
@@ -90,6 +92,14 @@ public class PacienteEntity extends Model
         return eps;
     }
 
+    public void setEst(String eps) {
+        this.est = eps;
+    }
+
+    public String getEst() {
+        return est;
+    }
+
     public void setEps(String eps) {
         this.eps = eps;
     }
@@ -101,6 +111,7 @@ public class PacienteEntity extends Model
     public void setEstado(State estado) {
 
         this.estado = estado;
+        this.est = estado.toString();
         if(!estado.toString().equals(State.VERDE)) {
             System.out.println("cambió estado a " + estado);
             notificarObservador();

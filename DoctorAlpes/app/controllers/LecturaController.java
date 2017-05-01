@@ -65,7 +65,10 @@ public class LecturaController extends Controller{
                             estado.establecerEstado(p, lectura);
                         }
                     }
-
+                    System.out.println("*****************************nuevo estado "+ p.getEstado().toString());
+                    p.setEps(p.getEstado().toString());
+                    p.update();
+                    System.out.println("*****************************nuevo estado "+ p.getEstado().toString());
                     return lectura;
                 }
         ).thenApply(

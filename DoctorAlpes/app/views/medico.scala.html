@@ -125,19 +125,21 @@
 	<div class="col-lg-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-bell fa-fw"></i> Notifications Panel
+				<i class="fa fa-bell fa-fw"></i> NOTIFICACIONES
 			</div>
 				<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="list-notification">
-						<!-- for(emergencia <- medico.getEmergencias){
+
+					@for(emergencia <- medico.getEmergencias){
 					<a href="#" class="list-group-item">
-						<i class="fa fa-comment fa-fw"></i> emergengencia.get
-						<span class="pull-right text-muted small"><em>4 minutes ago</em>
+						<i class="fa fa-warning fa-fw"></i> @emergencia.getDescripcion
+						<span class="pull-right text-muted small"><em>@emergencia.getFecha</em>
 						</span>
 					</a>
+						<h1></h1>
 				}
-					-->
+<!-- extras de ejemplo
 					<a href="#" class="list-group-item">
 						<i class="fa fa-comment fa-fw"></i> New Comment
 						<span class="pull-right text-muted small"><em>4 minutes ago</em>
@@ -183,23 +185,15 @@
 						<span class="pull-right text-muted small"><em>Yesterday</em>
 						</span>
 					</a>
+					-->
 				</div>
 					<!-- /.list-group -->
-				<a href="#" class="btn btn-default btn-block">View All Alerts</a>
+
+				<a href="#" class="btn btn-default btn-block">Ver Todas</a>
 			</div>
 				<!-- /.panel-body -->
 		</div>
-			<!-- /.panel -->
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-			</div>
-			<div class="panel-body">
-				<div id="morris-donut-chart"><svg height="352" version="1.1" width="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><path fill="none" stroke="#0b62a4" d="M256,290.8333333333333A112.33333333333333,112.33333333333333,0,0,0,362.0483986027914,215.54746862555191" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#0b62a4" stroke="#ffffff" d="M256,293.8333333333333A115.33333333333333,115.33333333333333,0,0,0,364.8805516812042,216.53686689745092L410.352342773499,232.4222058184962A163.5,163.5,0,0,1,256,342Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#3980b5" d="M362.0483986027914,215.54746862555191A112.33333333333333,112.33333333333333,0,0,0,155.22832001158343,128.8628537273753" stroke-width="2" opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path><path fill="#3980b5" stroke="#ffffff" d="M364.8805516812042,216.53686689745092A115.33333333333333,115.33333333333333,0,0,0,152.53708820180378,127.53723261030224L104.84248001737515,104.04428059106294A168.5,168.5,0,0,1,415.0725979041871,234.07120293832787Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#679dc6" d="M155.22832001158343,128.8628537273753A112.33333333333333,112.33333333333333,0,0,0,255.9647094431052,290.8333277899056" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#679dc6" stroke="#ffffff" d="M152.53708820180378,127.53723261030224A115.33333333333333,115.33333333333333,0,0,0,255.96376696532462,293.8333276418615L255.94863496095874,341.9999919315985A163.5,163.5,0,0,1,109.32786636700794,106.25364911951806Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="256" y="168.5" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="15px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 15px; font-weight: 800;" font-weight="800" transform="matrix(1.7396,0,0,1.7396,-189.3289,-132.7562)" stroke-width="0.5748485410484669"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="6">In-Store Sales</tspan></text><text x="256" y="188.5" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 14px;" transform="matrix(2.3403,0,0,2.3403,-343.1111,-241.9201)" stroke-width="0.427299703264095"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5">30</tspan></text></svg></div>
-				<a href="#" class="btn btn-default btn-block">View Details</a>
-			</div>
-				<!-- /.panel-body -->
-		</div>
+
 			<!-- /.panel -->
 		<div class="chat-panel panel panel-default">
 			<div class="panel-heading">
@@ -238,6 +232,8 @@
 					</ul>
 				</div>
 			</div>
+
+
 				<!-- /.panel-heading -->
 			<div class="panel-body">
 				<ul class="chat">
@@ -318,8 +314,58 @@
 				<!-- /.panel-footer -->
 		</div>
 			<!-- /.panel .chat-panel -->
+			<!-- /.panel donut-->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
+			</div>
+			<div class="panel-body">
+				<div id="morris-donut-chart"><svg height="352" version="1.1" width="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><path fill="none" stroke="#0b62a4" d="M256,290.8333333333333A112.33333333333333,112.33333333333333,0,0,0,362.0483986027914,215.54746862555191" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#0b62a4" stroke="#ffffff" d="M256,293.8333333333333A115.33333333333333,115.33333333333333,0,0,0,364.8805516812042,216.53686689745092L410.352342773499,232.4222058184962A163.5,163.5,0,0,1,256,342Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#3980b5" d="M362.0483986027914,215.54746862555191A112.33333333333333,112.33333333333333,0,0,0,155.22832001158343,128.8628537273753" stroke-width="2" opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path><path fill="#3980b5" stroke="#ffffff" d="M364.8805516812042,216.53686689745092A115.33333333333333,115.33333333333333,0,0,0,152.53708820180378,127.53723261030224L104.84248001737515,104.04428059106294A168.5,168.5,0,0,1,415.0725979041871,234.07120293832787Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#679dc6" d="M155.22832001158343,128.8628537273753A112.33333333333333,112.33333333333333,0,0,0,255.9647094431052,290.8333277899056" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#679dc6" stroke="#ffffff" d="M152.53708820180378,127.53723261030224A115.33333333333333,115.33333333333333,0,0,0,255.96376696532462,293.8333276418615L255.94863496095874,341.9999919315985A163.5,163.5,0,0,1,109.32786636700794,106.25364911951806Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="256" y="168.5" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="15px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 15px; font-weight: 800;" font-weight="800" transform="matrix(1.7396,0,0,1.7396,-189.3289,-132.7562)" stroke-width="0.5748485410484669"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="6">In-Store Sales</tspan></text><text x="256" y="188.5" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 14px;" transform="matrix(2.3403,0,0,2.3403,-343.1111,-241.9201)" stroke-width="0.427299703264095"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5">30</tspan></text></svg></div>
+				<a href="#" class="btn btn-default btn-block">View Details</a>
+			</div>
+				<!-- /.panel-body -->
+		</div>
 	</div>
 
+	<div class="col-lg-5">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-tasks fa-fw"></i> MIS PACIENTES
+			</div>
+				<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="list-notification">
+
+					@for(paciente <- medico.getPacientes){
+						<a href="#" class="list-group-item">
+							<i class="fa fa-bar-chart-o fa-fw"></i> @paciente.getNombre
+							<span class="pull-right text-muted big"><em>Estado: @paciente.getEst</em>
+							</span>
+						</a>
+						<h1></h1>
+					}
+					<a href="@controllers.routes.MedicoController.getMedicoPacientes(medico.getId)" class="btn btn-default btn-block">Ver Todos</a>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bolt fa-fw"></i> AGREGAR PACIENTE EXISTENTE
+			</div>
+				<!-- /.panel-agragar paciente (como enviar los parametros correctos?) -->
+			<div class="panel-body">
+				<div class="list-notification">
+					@idPac = {}
+					<!--<form action="/pacienteAMedico/@medico.getId/"method="get" > -->
+					<form action="/pacienteAMedico/@medico.getId/61"method="post" >
+						<input type="number" name="idPac"  placeholder="Id del paciente" ><br>
+						<input type="submit" value="Agregar">
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- footer starts here -->
 	<footer class="footer clearfix">
 		<div class="container">

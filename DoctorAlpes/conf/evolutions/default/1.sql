@@ -94,6 +94,7 @@ create table pacienteentity (
   id                            bigint not null,
   nombre                        varchar(255),
   eps                           varchar(255),
+  est                           varchar(255),
   marcapasos_id                 bigint,
   historial_mediciones_id       bigint,
   historial_clinico_id          bigint,
