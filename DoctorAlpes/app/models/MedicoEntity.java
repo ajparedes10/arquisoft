@@ -20,6 +20,8 @@ public class MedicoEntity extends Model
     private Long id;
     private String nombre;
     private String tipo;
+    private static String correo;
+    private static String clave;
 
     @OneToMany (mappedBy = "medico")
     @JsonManagedReference(value="r2")
@@ -38,6 +40,8 @@ public class MedicoEntity extends Model
         id=null;
         tipo="NO NAME";
         nombre="NO NAME";
+        correo = "NO NAME";
+        clave = "NO NAME";
         consejos = new ArrayList<ConsejoEntity>();
         pacientes = new ArrayList<PacienteEntity>();
         marcapasos = new ArrayList<MarcapasosEntity>();
@@ -47,12 +51,14 @@ public class MedicoEntity extends Model
         this();
         setId(id);
     }
-    public MedicoEntity(Long id, String nombre, String tipo)
+    public MedicoEntity(Long id, String nombre, String tipo, String correo, String clave)
     {
         this();
         setId(id);
         setNombre(nombre);
         setTipo(tipo);
+        setCorreo(correo);
+        setClave(clave);
     }
 
     public Long getId() {
@@ -66,6 +72,14 @@ public class MedicoEntity extends Model
     public String getNombre() {
         return nombre;
     }
+
+    public String getCorreo() {  return correo;    }
+
+    public void setCorreo(String correo) {        this.correo = correo;    }
+
+    public String getClave() {        return clave;    }
+
+    public void setClave(String clave) {        this.clave = clave;    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -111,5 +125,9 @@ public class MedicoEntity extends Model
     public void addPaciente(PacienteEntity paciente)
     {
         this.pacientes.add(paciente);
+    }
+
+    public static boolean  authenticate(String pCorreo, String pClave){
+            return (correo.equals(pCorreo) && clave.equals(pClave));
     }
 }
