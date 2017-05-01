@@ -36,8 +36,9 @@ public class Application extends Controller{
         } else {
             session().clear();
             session("email", loginForm.get().email);
-            return redirect(
-                    routes.HomeController.index()
+            MedicoEntity med = MedicoEntity.FINDER.where().ilike("correo", "%"+loginForm.get().email+"%").findList().get(0);
+            return ok(
+                    medico.render(med)
             );
         }
     }
@@ -47,13 +48,6 @@ public class Application extends Controller{
                 login.render(form(Login.class))
         );
     }
-
-    public Result medico(){
-        return ok(
-                medico.render("medico")
-        );
-    }
-
 
 
 }
