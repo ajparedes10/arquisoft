@@ -30,6 +30,7 @@ GET     /paciente/:id                controllers.PacienteController.getPaciente(
 GET     /paciente/:id/hisClinico     controllers.PacienteController.getHistorialPaciente(id:Long)
 POST    /paciente                    controllers.PacienteController.createPaciente
 PUT     /paciente/:id                controllers.PacienteController.updatePaciente(id: Long)
+PUT     /pacienteMarc/:id                controllers.PacienteController.agregarMarcapasos(id: Long)
 GET     /paciente/:id/lecturas/fechaInic/:inic/fehcFin/:fin     controllers.PacienteController.getMedicionesEnFecha(id: Long, inic: String, fin: String)
 DELETE     /paciente/:id                controllers.PacienteController.deletePaciente(id: Long)
 

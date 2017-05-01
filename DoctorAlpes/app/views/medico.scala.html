@@ -365,6 +365,28 @@
 				</div>
 			</div>
 		</div>
+		@if(medico.getTipo.equals("cardiologo")){
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<i class="fa fa-tasks fa-fw"></i> MIS MARCAPASOS
+				</div>
+					<!-- /.panel-heading -->
+				<div class="panel-body">
+					<div class="list-notification">
+
+						@for(marcap <- medico.getMarcapasos){
+							<a href="#" class="list-group-item">
+								<i class="fa fa-bar-chart-o fa-fw"></i> ID:@marcap.getId Paciente: @marcap.getPaciente.getNombre
+								<span class="pull-right text-muted small"><em>Bateria: @marcap.getNivelBateria</em>
+								</span>
+							</a>
+							<h1></h1>
+						}
+						<a href="@controllers.routes.MedicoController.getMedicoPacientes(medico.getId)" class="btn btn-default btn-block">Ver Todos</a>
+					</div>
+				</div>
+			</div>
+		}
 	</div>
 	<!-- footer starts here -->
 	<footer class="footer clearfix">

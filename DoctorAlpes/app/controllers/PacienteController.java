@@ -144,6 +144,39 @@ public class PacienteController extends Controller {
                 }
         );
     }
+
+    public CompletionStage<Result> agregarMarcapasos(Long idPaciente)
+    {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode n = request().body().asJson();
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    // Long id = Long.getLong(idPaciente.split("=")[1]);
+                    PacienteEntity paciente = PacienteEntity.FINDER.byId(idPaciente);
+                    MarcapasosEntity mar = Json.fromJson( n , MarcapasosEntity.class ) ;
+                    mar.setPaciente(paciente);
+                    mar.save();
+                    paciente.setMarcapasos(mar);
+                    paciente.update();
+                    for(int i =0; i<paciente.getMedicos().size();i++){
+                        MedicoEntity m = paciente.getMedicos().get(i);
+                        if(m.getTipo().equals("cardiologo")) {
+                            m.addMarcapasos(mar);
+                            m.update();
+                            mar.setMedico(m);
+                            mar.update();
+                            break;
+                        }
+                    }
+                    return paciente;
+                }
+        ).thenApply(
+                CampoEntity -> {
+                    return ok(Json.toJson(CampoEntity));
+                }
+        );
+    }
     }
 
 

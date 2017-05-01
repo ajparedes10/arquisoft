@@ -141,6 +141,11 @@ public class MedicoEntity extends Model
         this.emergencias.add(emergencia);
     }
 
+    public void addMarcapasos(MarcapasosEntity marc)
+    {
+        this.marcapasos.add(marc);
+    }
+
     public List<EmergenciaEntity> getEmergencias() {
         return emergencias;
     }
